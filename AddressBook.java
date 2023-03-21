@@ -54,4 +54,19 @@ public class AddressBook {
             System.out.println("Contact Doesn't Exist:");
         }
     }
+
+    public void deleteContact() {
+        System.out.println("Enter First Name To Delete:");
+        String name = sc.next();
+        if (cp.getFirstName().equals(name)) {
+            cp.setFirstName(null);
+            cp.setLastName(null);
+            cp.setAddress(null);
+            cp.setCity(null);
+            cp.setState(null);
+            cp.setEmail(null);
+            cp.setZip(0);
+            cp.setPhoneNumber(0);
+        }
+    }
 }
