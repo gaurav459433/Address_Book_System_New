@@ -7,6 +7,49 @@ public class AddressBook {
     Scanner sc = new Scanner(System.in);
     ArrayList<ContactPerson> contactPersonArrayList = new ArrayList<ContactPerson>();
 
+    public void addressBookOperationWork(ArrayList<ContactPerson> contactPersonArrayList) {
+        AddressBook book = new AddressBook();
+        int flag = 1;
+
+        while (flag == 1) {
+            System.out.println("Select a choice : \n1. ADD CONTACT \n2. EDIT CONTACT \n3. DISPLAY CONTACT \n4. DELETE CONTACT \n5. EXIT ");
+            System.out.println("Enter the Operation Number: ");
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    book.addContact();
+                    break;
+                case 2:
+                    if (book.contactPersonArrayList.isEmpty()) {
+                        System.out.println(" Address book is empty ");
+                        break;
+                    }
+                    book.editContact();
+                    break;
+                case 3:
+                    book.showContact();
+                    break;
+                case 4:
+                    if (book.contactPersonArrayList.isEmpty()) {
+                        System.out.println(" Address book is empty ");
+                        break;
+                    }
+                    book.deleteContact();
+                    break;
+                case 5:
+                    flag = 0;
+                    System.out.println("Exited Successfully");
+                    break;
+                default:
+                    System.out.println("Enter a valid Operation Number: ");
+                    break;
+            }
+
+        }
+
+    }
+
     public void addContact() {
         ContactPerson contactPerson = new ContactPerson();
         System.out.println("Enter First Name: ");
