@@ -22,7 +22,7 @@ public class AddressBook {
                     break;
                 case 2:
                     if (book.contactPersonArrayList.isEmpty()) {
-                        System.out.println(" Address book is empty ");
+                        System.out.println(" Address Book Is Empty: ");
                         break;
                     }
                     book.editContact();
@@ -32,7 +32,7 @@ public class AddressBook {
                     break;
                 case 4:
                     if (book.contactPersonArrayList.isEmpty()) {
-                        System.out.println(" Address book is empty ");
+                        System.out.println(" Address Book Is Empty: ");
                         break;
                     }
                     book.deleteContact();
@@ -52,24 +52,44 @@ public class AddressBook {
 
     public void addContact() {
         ContactPerson contactPerson = new ContactPerson();
-        System.out.println("Enter First Name: ");
-        contactPerson.setFirstName(sc.next());
-        System.out.println("Enter Last Name: ");
-        contactPerson.setLastName(sc.next());
-        System.out.println("Enter Address Name: ");
-        contactPerson.setAddress(sc.next());
-        System.out.println("Enter City Name: ");
-        contactPerson.setCity(sc.next());
-        System.out.println("Enter State Name: ");
-        contactPerson.setState(sc.next());
-        System.out.println("Enter Email: ");
-        contactPerson.setEmail(sc.next());
-        System.out.println("Enter Zip Code: ");
-        contactPerson.setZip(sc.nextInt());
-        System.out.println("Enter Mobile Number: ");
-        contactPerson.setPhoneNumber(sc.nextLong());
+        if (duplicateCheck() == true) {
+            System.out.println("This Contact Is Already Exist: ");
+        } else {
+            System.out.println("Enter First Name: ");
+            contactPerson.setFirstName(sc.next());
+            System.out.println("Enter Last Name: ");
+            contactPerson.setLastName(sc.next());
+            System.out.println("Enter Address Name: ");
+            contactPerson.setAddress(sc.next());
+            System.out.println("Enter City Name: ");
+            contactPerson.setCity(sc.next());
+            System.out.println("Enter State Name: ");
+            contactPerson.setState(sc.next());
+            System.out.println("Enter Email: ");
+            contactPerson.setEmail(sc.next());
+            System.out.println("Enter Zip Code: ");
+            contactPerson.setZip(sc.nextInt());
+            System.out.println("Enter Mobile Number: ");
+            contactPerson.setPhoneNumber(sc.nextLong());
 
-        contactPersonArrayList.add(contactPerson);
+            contactPersonArrayList.add(contactPerson);
+        }
+    }
+
+    public boolean duplicateCheck() {
+        if (contactPersonArrayList == null) {
+            return false;
+        }
+        if (!contactPersonArrayList.isEmpty()) {
+            System.out.println("Enter First Name to check: ");
+            String name = sc.next();
+            for (int j = 0; j < contactPersonArrayList.size(); j++) {
+                if (name.equals(contactPersonArrayList.get(j).getFirstName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public void showContact() {
@@ -101,6 +121,7 @@ public class AddressBook {
                 cp.setZip(sc.nextInt());
                 System.out.println("Enter Mobile Number: ");
                 cp.setPhoneNumber(sc.nextLong());
+                break;
             } else {
                 System.out.println("Contact Doesn't Exist:");
             }
